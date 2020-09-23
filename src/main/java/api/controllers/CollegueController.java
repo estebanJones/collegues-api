@@ -19,8 +19,9 @@ public class CollegueController {
 	@Autowired
 	CollegueRepository collegueRepository;
 	@GetMapping("collegue/{nom}")
-	public ResponseEntity<?> getCollegueByNom(@PathVariable String nom) {
+	public ResponseEntity<?> getCollegueByMatricule(@PathVariable String nom) {
 		List<Collegue> collegueList = this.collegueRepository.findByNom(nom);
+		System.out.println(collegueList.size());
 		DtoCollegueResponse response = new DtoCollegueResponse(collegueList);
 		return ResponseEntity.ok().body(response);
 	}
