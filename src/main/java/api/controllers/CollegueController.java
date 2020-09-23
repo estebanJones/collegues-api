@@ -1,6 +1,7 @@
 package api.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,14 @@ public class CollegueController {
 	@GetMapping("collegue/{nom}")
 	public ResponseEntity<?> getCollegueByMatricule(@PathVariable String nom) {
 		List<Collegue> collegueList = this.collegueRepository.findByNom(nom);
-		System.out.println(collegueList.size());
-		DtoCollegueResponse response = new DtoCollegueResponse(collegueList);
+		List<DtoCollegueResponse> response = collegueList.stream().map(collegue -> new DtoCollegueResponse(
+																							collegue.getMatricule(), 
+																							collegue.getNom(), 
+																							collegue.getPrenoms(), 
+																							collegue.getEmail(), 
+																							collegue.getDateDeNaissance(), 
+																							collegue.getPhotoUrl())).collect(Collectors.toList());
+
 		return ResponseEntity.ok().body(response);
 	}
 }
