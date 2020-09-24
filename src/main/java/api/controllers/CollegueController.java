@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import api.dto.collegue.DtoCollegueResponse;
 import api.entites.Collegue;
+import api.exceptions.CollegueNonTrouveException;
 import api.service.CollegueService;
 
 @RestController
@@ -22,7 +23,7 @@ public class CollegueController {
 		this.collegueService = collegueService;
 	}
 	@GetMapping("collegue/{nom}")
-	public ResponseEntity<?> getCollegueByMatricule(@PathVariable String nom) {
+	public ResponseEntity<?> getCollegueByMatricule(@PathVariable String nom) throws CollegueNonTrouveException {
 		List<DtoCollegueResponse> response = this.collegueService.getCollegueByMatricule(nom);
 
 		return ResponseEntity.ok().body(response);
