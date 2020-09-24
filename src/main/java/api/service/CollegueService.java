@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import api.dto.collegue.DtoCollegueResponse;
 import api.entites.Collegue;
+import api.exceptions.CollegueNonTrouveException;
 import api.repository.CollegueRepository;
 
 @Service
@@ -17,19 +18,23 @@ public class CollegueService {
 	}
 	
 	
-	public List<DtoCollegueResponse> getCollegueByMatricule(String nom) {
+	public List<DtoCollegueResponse> getCollegueByMatricule(String nom) throws CollegueNonTrouveException {
 		 List<Collegue> collegueList = this.findMatriculeByCollegueNom(nom);
 		 return this.createDtoCollegueResponse(collegueList);
 	}
 	
-	private List<DtoCollegueResponse> createDtoCollegueResponse(List<Collegue> collegueList) {
-		return collegueList.stream().map(collegue -> new DtoCollegueResponse(
-													collegue.getMatricule(), 
-													collegue.getNom(), 
-													collegue.getPrenoms(), 
-													collegue.getEmail(), 
-													collegue.getDateDeNaissance(), 
-													collegue.getPhotoUrl())).collect(Collectors.toList());
+	private List<DtoCollegueResponse> createDtoCollegueResponse(List<Collegue> collegueList) throws CollegueNonTrouveException {
+		if (collegueList.size() != 0) {
+			return collegueList.stream().map(collegue -> new DtoCollegueResponse(
+					collegue.getMatricule(), 
+					collegue.getNom(), 
+					collegue.getPrenoms(), 
+					collegue.getEmail(), 
+					collegue.getDateDeNaissance(), 
+					collegue.getPhotoUrl())).collect(Collectors.toList());
+		} else {
+			throw new CollegueNonTrouveException("Collegue non trouvé");
+		}
 
 	}
 	
