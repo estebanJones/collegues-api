@@ -1,14 +1,6 @@
-package api.entites;
+package api.dto.collegue;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Collegue {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class DtoUpdateCollegueRequest {
 	private Integer id;
 	private String matricule;
 	private String nom;
@@ -17,12 +9,9 @@ public class Collegue {
 	private String dateDeNaissance;
 	private String photoUrl;
 	
-	public Collegue() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Collegue(String matricule, String nom, String prenoms, String email, String dateDeNaissance,
-			String photoUrl) {
+	public DtoUpdateCollegueRequest(Integer id, String matricule, String nom, String prenoms, String email,
+			String dateDeNaissance, String photoUrl) {
+		this.id = id;
 		this.matricule = matricule;
 		this.nom = nom;
 		this.prenoms = prenoms;
@@ -88,4 +77,4 @@ public class Collegue {
 	}
 	
 	
-}
+}	

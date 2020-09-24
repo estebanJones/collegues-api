@@ -1,15 +1,6 @@
-package api.entites;
+package api.dto.collegue;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Collegue {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class DtoCollegueRequest {
 	private String matricule;
 	private String nom;
 	private String prenoms;
@@ -17,12 +8,9 @@ public class Collegue {
 	private String dateDeNaissance;
 	private String photoUrl;
 	
-	public Collegue() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Collegue(String matricule, String nom, String prenoms, String email, String dateDeNaissance,
-			String photoUrl) {
+	public DtoCollegueRequest(String matricule, String nom, String prenoms, String email,
+			String dateDeNaissance, String photoUrl) {
+		super();
 		this.matricule = matricule;
 		this.nom = nom;
 		this.prenoms = prenoms;
@@ -30,62 +18,43 @@ public class Collegue {
 		this.dateDeNaissance = dateDeNaissance;
 		this.photoUrl = photoUrl;
 	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getMatricule() {
 		return matricule;
 	}
-
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
 	}
-
 	public String getNom() {
 		return nom;
 	}
-
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
 	public String getPrenoms() {
 		return prenoms;
 	}
-
 	public void setPrenoms(String prenoms) {
 		this.prenoms = prenoms;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getDateDeNaissance() {
 		return dateDeNaissance;
 	}
-
 	public void setDateDeNaissance(String dateDeNaissance) {
 		this.dateDeNaissance = dateDeNaissance;
 	}
-
 	public String getPhotoUrl() {
 		return photoUrl;
 	}
-
 	public void setPhotoUrl(String photoUrl) {
 		this.photoUrl = photoUrl;
 	}
+	
 	
 	
 }
